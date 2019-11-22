@@ -14,6 +14,7 @@ func New() {
 	e.Use(middleware.Recover())
 
 	e.GET("/auth/google/sign_in", handler.GoogleSignIn)
+	e.GET("/auth/google/callback", handler.GoogleCallbackAfterSuccess)
 
 	e.Logger.Fatal(e.Start(":3000"))
 }
