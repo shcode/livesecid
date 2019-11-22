@@ -1,9 +1,9 @@
 package server
 
 import (
+	"github.com/awcodify/livesecid/handler"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
-	"net/http"
 )
 
 // New for instanctiate the server
@@ -13,11 +13,7 @@ func New() {
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
-	e.GET("/", hello)
+	e.GET("/auth/google/sign_in", handler.GoogleSignIn)
 
 	e.Logger.Fatal(e.Start(":3000"))
-}
-
-func hello(c echo.Context) error {
-	return c.String(http.StatusOK, "Hello World")
 }
